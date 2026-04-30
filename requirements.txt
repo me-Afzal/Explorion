@@ -1,0 +1,16 @@
+langchain
+langchain-core
+langchain-community
+langchain-openai
+langchain-google-genai
+langchain-huggingface
+langchain-tavily
+langgraph
+langsmith
+pinecone
+sentence-transformers
+pydantic
+python-dotenv
+duckduckgo-search
+streamlit
+fpdf2
