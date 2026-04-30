@@ -66,7 +66,7 @@ No Python or dependency setup needed. Just Ollama + Docker.
 ### Pull the pre-built image
 
 ```bash
-docker pull afzal23/explorion
+docker pull afzal23/explorion:latest
 ```
 
 ### Run with your .env file
