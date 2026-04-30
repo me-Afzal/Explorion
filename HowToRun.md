@@ -82,11 +82,32 @@ Open your browser at **http://localhost:8501**
 > docker run --env-file .env -p 8501:8501 --add-host=host.docker.internal:host-gateway afzal23/explorion
 > ```
 
-### Or use docker-compose
+### Or use docker-compose (easier)
+
+Create a `docker-compose.yml` file in the same folder as your `.env`:
+
+```yaml
+services:
+  explorion:
+    image: afzal23/explorion:latest
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+```
+
+Then run:
 
 ```bash
 docker-compose up
 ```
+
+Open your browser at **http://localhost:8501**
+
+> The `extra_hosts` line is required on Linux so the container can reach Ollama on the host. On Windows and Mac Docker Desktop it works automatically without it.
 
 ---
 
