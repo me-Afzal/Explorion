@@ -72,7 +72,7 @@ docker pull afzal23/explorion:latest
 ### Run with your .env file
 
 ```bash
-docker run --env-file .env -p 8501:8501 afzal23/explorion
+docker run --env-file .env -p 8501:8501 afzal23/explorion:latest
 ```
 
 Open your browser at **http://localhost:8501**
