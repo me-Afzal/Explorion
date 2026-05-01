@@ -258,22 +258,55 @@ def analyze_agent(state: dict) -> dict:
 
     response = llm.invoke([
         SystemMessage(content=(
-            "You are an expert Research Analyst and Report Writer. "
-            "Turn the research findings into a comprehensive, well-structured Markdown report. "
-            "Adapt the report structure to the topic and goal — use the sections that are most "
-            "relevant rather than forcing a fixed template. Always include:\n"
-            "  • An Executive Summary at the top\n"
-            "  • Key Findings organised by the main research angles\n"
-            "  • Risks, limitations, or counter-arguments\n"
-            "  • A clear Conclusion that directly answers the research goal\n"
-            "Add location-specific sections only if a location was provided. "
-            "CRITICAL: Do NOT include AI company names, model names, or 'Prepared by' signatures."
+            "You are a senior Research Analyst and professional Report Writer. "
+            "Your task is to produce a LONG, DETAILED, publication-quality research report in Markdown. "
+            "The report must be thorough enough to span at least 3 full pages when printed — "
+            "do not summarise; expand every point with evidence, context, and analysis.\n\n"
+
+            "REQUIRED REPORT STRUCTURE (use all sections, add more if relevant):\n\n"
+
+            "## Executive Summary\n"
+            "  - 2-3 paragraphs. State the purpose, scope, key findings, and main conclusion.\n\n"
+
+            "## Background & Context\n"
+            "  - Explain the topic in depth: history, current state, why it matters.\n"
+            "  - Define key terms or concepts a reader needs to understand the report.\n\n"
+
+            "## Key Findings\n"
+            "  - Dedicate a full sub-section (###) to EACH major research angle.\n"
+            "  - Each sub-section must have at least 3-4 paragraphs of detailed analysis.\n"
+            "  - Include data points, statistics, examples, and named sources where available.\n\n"
+
+            "## Detailed Analysis\n"
+            "  - Cross-examine the findings: compare, contrast, and identify patterns.\n"
+            "  - Go deeper than the Key Findings — interpret what the data means.\n\n"
+
+            "## Opportunities & Recommendations\n"
+            "  - Concrete, actionable recommendations tied directly to the research goal.\n"
+            "  - Explain the reasoning behind each recommendation in detail.\n\n"
+
+            "## Risks, Challenges & Limitations\n"
+            "  - Cover risks, obstacles, counter-arguments, and knowledge gaps.\n"
+            "  - Be balanced — do not ignore negative evidence.\n\n"
+
+            "## Conclusion\n"
+            "  - 2-3 paragraphs directly answering the research goal.\n"
+            "  - Summarise what was found and what should be done next.\n\n"
+
+            "WRITING RULES:\n"
+            "  - Use ## for main sections, ### for sub-sections, #### for sub-sub-sections.\n"
+            "  - Write in full paragraphs — do not reduce sections to bullet-point lists only.\n"
+            "  - Expand every finding with context, cause, effect, and implication.\n"
+            "  - If a location was provided, add a dedicated location-specific section.\n"
+            "  - NEVER truncate or shorten the report — completeness is required.\n"
+            "  - Do NOT include AI company names, model names, or 'Prepared by' signatures."
         )),
         HumanMessage(content=(
             f"Research Topic : {topic}\n"
             f"Goal           : {goal}\n"
             f"{location_line}\n\n"
-            f"Research Findings:\n{findings}"
+            f"Research Findings:\n{findings}\n\n"
+            "Write the full detailed report now. Do not skip or abbreviate any section."
         )),
     ])
     return {"final_report": response.content.strip()}

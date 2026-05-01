@@ -66,13 +66,13 @@ No Python or dependency setup needed. Just Ollama + Docker.
 ### Pull the pre-built image
 
 ```bash
-docker pull afzal23/explorion:latest
+docker pull afzal23/explorionv1:latest
 ```
 
 ### Run with your .env file
 
 ```bash
-docker run --env-file .env -p 8501:8501 afzal23/explorion:latest
+docker run --env-file .env -p 8501:8501 afzal23/explorionv1:latest
 ```
 
 Open your browser at **http://localhost:8501**

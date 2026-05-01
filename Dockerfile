@@ -9,6 +9,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
+# Install CPU-only PyTorch into /install first so sentence-transformers skips
+# the CUDA build (~2 GB). Both steps write to /install so everything is copied
+# to the runtime stage together.
+RUN pip install --no-cache-dir --prefix=/install torch --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 
