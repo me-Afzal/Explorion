@@ -66,20 +66,20 @@ No Python or dependency setup needed. Just Ollama + Docker.
 ### Pull the pre-built image
 
 ```bash
-docker pull afzal23/explorionv1:latest
+docker pull afzal23/explorionv2:latest
 ```
 
 ### Run with your .env file
 
 ```bash
-docker run --env-file .env -p 8501:8501 afzal23/explorionv1:latest
+docker run --env-file .env -p 8501:8501 afzal23/explorionv2:latest
 ```
 
 Open your browser at **http://localhost:8501**
 
 > **Linux users:** Add `--add-host=host.docker.internal:host-gateway` so the container can reach Ollama:
 > ```bash
-> docker run --env-file .env -p 8501:8501 --add-host=host.docker.internal:host-gateway afzal23/explorion
+> docker run --env-file .env -p 8501:8501 --add-host=host.docker.internal:host-gateway afzal23/explorionv2:latest
 > ```
 
 ### Or use docker-compose (easier)
@@ -89,7 +89,7 @@ Create a `docker-compose.yml` file in the same folder as your `.env`:
 ```yaml
 services:
   explorion:
-    image: afzal23/explorion:latest
+    image: afzal23/explorionv2:latest
     ports:
       - "8501:8501"
     env_file:
